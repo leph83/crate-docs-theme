@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>Querying Crate &mdash; Crate Data  documentation</title>
+
+    <link rel="stylesheet" href="https://crate.io/docs/stable/_static/css/blank.css" type="text/css" />
+    <link rel="stylesheet" href="https://crate.io/docs/stable/_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://crate.io/docs/stable/_static/bootstrap/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="https://crate.io/docs/stable/_static/bootstrap/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="https://crate.io/docs/stable/_static/font-awesome/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="../out/docs/_static/css/main.css" type="text/css" />
+
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="https://crate.io/docs/stable/_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="https://crate.io/docs/stable/_static/js/jquery-migrate.min.js"></script>
+    <script type="text/javascript" src="https://crate.io/docs/stable/_static/js/underscore-1.6.0.min.js"></script>
+    <script type="text/javascript" src="https://crate.io/docs/stable/_static/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://crate.io/docs/stable/_static/doctools.js"></script>
+    <script type="text/javascript" src="https://crate.io/docs/stable/_static/searchtools.js"></script>
+    <link rel="top" title="Crate Data  documentation" href="../index.html" />
+    <link rel="up" title="Crate SQL" href="index.html" />
+    <link rel="next" title="Aggregation" href="aggregation.html" />
+    <link rel="prev" title="Builtin Tools for fulltext search in Crate" href="analyzer.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+
+
+ <!--
+Always link to the latest version, as canonical.
+http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="https://crate.io/docs/stable/sql/dml.html" />
+
+
+
+  </head>
+  <body>
+<div id="page-wrap">
+    <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="https://crate.io" id="crate-logo" title="https://crate.io">
+          <span>crate.io</span>
+        </a>
+      </div>
+
+      <nav class="collapse navbar-collapse nav-collapse" role="navigation">
+        <ul class="nav navbar-nav navbar-right">
+
+
+<form class="navbar-form navbar-left" role="search" action="../search.html" method="get">
+  <div class="form-group">
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+    <input id="navbar-search-input" type="text" class="form-control" placeholder="Search Documentation" name="q" />
+  </div>
+  <button id="navbar-search-submit" type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+</form>
+          <li class="dropdown">
+            <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">v:0.39.3 <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="../index.html">0.39.3</a></li>
+              <li class="divider"></li>
+              <li class="dropdown-header">Other Versions</li>
+
+              <li><a href="https://crate.io/docs/en/latest/">latest</a></li>
+
+              <li><a href="https://crate.io/docs/en/0.40.1/">0.40.1</a></li>
+
+              <li><a href="https://crate.io/docs/en/0.40.0/">0.40.0</a></li>
+
+              <li><a href="https://crate.io/docs/en/0.39.3/">0.39.3</a></li>
+
+              <li><a href="https://crate.io/docs/en/0.39.2/">0.39.2</a></li>
+
+              <li><a href="https://crate.io/docs/en/0.39.1/">0.39.1</a></li>
+
+              <li><a href="https://crate.io/docs/en/0.39.0/">0.39.0</a></li>
+
+              <li><a href="https://crate.io/docs/en/0.38.8/">0.38.8</a></li>
+
+              <li><a href="https://crate.io/docs/en/0.38.7/">0.38.7</a></li>
+
+              <li><a href="https://crate.io/docs/en/0.38.6/">0.38.6</a></li>
+
+              <li><a href="https://crate.io/docs/en/0.38.5/">0.38.5</a></li>
+
+              <li><a href="https://crate.io/docs/en/0.38.4/">0.38.4</a></li>
+
+              <li><a href="https://crate.io/docs/en/0.38.3/">0.38.3</a></li>
+
+              <li><a href="https://crate.io/docs/en/0.38.2/">0.38.2</a></li>
+
+              <li><a href="https://crate.io/docs/en/0.38.1/">0.38.1</a></li>
+
+              <li><a href="https://crate.io/docs/en/0.38.0/">0.38.0</a></li>
+
+              <li><a href="https://crate.io/docs/en/0.37.5/">0.37.5</a></li>
+
+              <li><a href="https://crate.io/docs/en/0.37.4/">0.37.4</a></li>
+
+              <li><a href="https://crate.io/docs/en/0.37.3/">0.37.3</a></li>
+
+              <li><a href="https://crate.io/docs/en/0.37.2/">0.37.2</a></li>
+
+            </ul>
+          </li>
+
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row" id="content-wrap">
+      <div class="col-md-3" id="sidebar-column"><div role="complementary" class="bs-docs-sidebar hidden-print">
+  <ul class="bs-docs-sidenav bs-sidenav nav" role="complementary">
+
+
+
+
+      <ul class="toctree nav nav-list">
+  <li class="current"><a class="current-active" href="../index.html" title="Crate Data">Crate Data</a></li>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../hello.html">Hello Crate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html#hosts">Hosts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html#ports">Ports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html#logging">Logging</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Crate SQL</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ddl.html">Data Definition in Crate</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ddl.html#table-basics">Table Basics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ddl.html#constraints">Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ddl.html#data-types">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ddl.html#sharding">Sharding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ddl.html#replication">Replication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ddl.html#partitioned-tables">Partitioned Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ddl.html#indices-and-fulltext-search">Indices and fulltext search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ddl.html#system-columns">System Columns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ddl.html#alter-table">Alter table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ddl.html#set-and-reset">Set and Reset</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Querying Crate</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#retrieving-data">Retrieving Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#inserting-data">Inserting data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#updating-data">Updating data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#deleting-data">Deleting data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#refresh">Refresh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#importing-data">Importing data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exporting-data">Exporting Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="aggregation.html">Aggregation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="aggregation.html#count">count</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aggregation.html#min">min</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aggregation.html#max">max</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aggregation.html#sum">sum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aggregation.html#avg">avg</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aggregation.html#arbitrary">arbitrary</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="scalar.html">Scalar Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="scalar.html#date-trunc-interval-timezone-timestamp-returns-timestamp">date_trunc(&#8216;interval&#8217;, [&#8216;timezone&#8217;,] timestamp) returns timestamp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scalar.html#format-format-string-parameter-parameter-returns-string">format(&#8216;format_string&#8217;, parameter, [ parameter , ... ]) returns string</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scalar.html#substr-string-from-count-returns-string">substr(&#8216;string&#8217;, from, [ count ]) returns string</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="arithmetic.html">Arithmetic Operators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="arithmetic.html#supported-operators">Supported operators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="arithmetic.html#result-types">Result types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="occ.html">Optimistic Concurrency Control with Crate</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="occ.html#optimistic-update">Optimistic Update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="occ.html#optimistic-delete">Optimistic Delete</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="partitioned_tables.html">Partitioned Tables</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="partitioned_tables.html#creation">Creation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="partitioned_tables.html#information-schema">Information Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="partitioned_tables.html#insert">Insert</a></li>
+<li class="toctree-l3"><a class="reference internal" href="partitioned_tables.html#update">Update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="partitioned_tables.html#delete">Delete</a></li>
+<li class="toctree-l3"><a class="reference internal" href="partitioned_tables.html#alter">Alter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="partitioned_tables.html#limitations">Limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rest.html">Crate SQL HTTP Endpoint</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#parameter-substitution">Parameter Substitution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#column-types">Column Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#error-handling">Error Handling</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="analyzer.html">Builtin Tools for fulltext search in Crate</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="analyzer.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="analyzer.html#builtin-analyzer">Builtin Analyzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="analyzer.html#builtin-tokenizer">Builtin Tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="analyzer.html#builtin-token-filter">Builtin Token Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="analyzer.html#builtin-char-filter">Builtin Char Filter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="information_schema.html">Information Schema</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="information_schema.html#tables">Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="information_schema.html#columns">Columns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="information_schema.html#table-constraints">Table Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="information_schema.html#table-partitions">Table Partitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="information_schema.html#indices">Indices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="information_schema.html#routines">Routines</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="system.html">System Information</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="system.html#cluster">Cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system.html#nodes">Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system.html#shards">Shards</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system.html#jobs-operations-and-logs">Jobs, Operations and Logs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html">Crate SQL Syntax Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/select.html">SELECT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/insert.html">INSERT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/update.html">UPDATE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/copy_from.html">COPY FROM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/copy_to.html">COPY TO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/delete.html">DELETE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/refresh.html">REFRESH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/create_table.html">CREATE TABLE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/alter_table.html">ALTER TABLE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/create_blob_table.html">CREATE BLOB TABLE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/drop_table.html">DROP TABLE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/create_analyzer.html">CREATE ANALYZER</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/set.html">SET / RESET</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../blob.html">Blob Support</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../blob.html#creating-a-table-for-blobs">Creating a table for blobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blob.html#altering-a-blob-table">Altering a blob table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blob.html#uploading">Uploading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blob.html#list">List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blob.html#download">Download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blob.html#delete">Delete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blob.html#deleting-a-blob-table">Deleting a blob table</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../udc.html">Usage Data Collector</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../udc.html#technical-information">Technical Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../udc.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../udc.html#how-to-disable-udc">How to disable UDC</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../udc.html#by-configuration">By configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../udc.html#by-system-property">By system property</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+      <li></li>
+
+
+  </ul>
+</div>
+      </div>
+
+      <div class="col-md-9" id="content-column">
+        <div>
+
+  <div class="section" id="querying-crate">
+<h1>Querying Crate<a class="headerlink" href="#querying-crate" title="Permalink to this headline">¶</a></h1>
+<p>This section provides an overview on how to query documents using SQL.  See
+<a class="reference internal" href="ddl.html#sql-ddl"><em>Data Definition in Crate</em></a> for information about <cite>Table creation</cite> and other Data Definition
+statements.</p>
+<div class="section" id="retrieving-data">
+<h2>Retrieving Data<a class="headerlink" href="#retrieving-data" title="Permalink to this headline">¶</a></h2>
+<p>Retrieving data from <tt class="docutils literal"><span class="pre">Crate</span></tt> is done by using a SQL <tt class="docutils literal"><span class="pre">SELECT</span></tt> statement.
+The response to a <tt class="docutils literal"><span class="pre">SELECT</span></tt> query contains the column names of the result and
+the actual result rows as a two-dimensional array of values.</p>
+<p>A simple select:</p>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">select</span> <span class="k">name</span><span class="p">,</span> <span class="k">position</span> <span class="k">from</span> <span class="n">locations</span> <span class="k">order</span> <span class="k">by</span> <span class="n">id</span> <span class="k">limit</span> <span class="mf">2</span><span class="p">;</span>
+<span class="go">+-------------------+----------+</span>
+<span class="go">| name              | position |</span>
+<span class="go">+-------------------+----------+</span>
+<span class="go">| North West Ripple | 1        |</span>
+<span class="go">| Arkintoofle Minor | 3        |</span>
+<span class="go">+-------------------+----------+</span>
+<span class="go">SELECT 2 rows in set (... sec)</span>
+</pre></div>
+</div>
+<p>If the &#8216;*&#8217; operator is used, all properties defined in the schema are returned
+for each object:</p>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">select</span> <span class="nb">date</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">kind</span><span class="p">,</span> <span class="k">name</span><span class="p">,</span> <span class="k">position</span><span class="p">,</span> <span class="n">race</span> <span class="k">from</span> <span class="n">locations</span> <span class="k">order</span> <span class="k">by</span> <span class="n">id</span> <span class="k">limit</span> <span class="mf">1</span> <span class="k">offset</span> <span class="mf">1</span><span class="p">;</span>
+<span class="go">+--------------+--------------...---+--------+-------------------+----------+------+</span>
+<span class="go">| date         | description        | kind   | name              | position | race |</span>
+<span class="go">+--------------+--------------...---+--------+-------------------+----------+------+</span>
+<span class="go">| 308534400000 | Motivated by ...s. | Planet | Arkintoofle Minor | 3        | NULL |</span>
+<span class="go">+--------------+--------------...---+--------+-------------------+----------+------+</span>
+<span class="go">SELECT 1 row in set (... sec)</span>
+</pre></div>
+</div>
+<p>Aliases can be used to change the output name of the columns. The table name
+can also be aliased for brevity:</p>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">select</span> <span class="k">name</span> <span class="k">as</span> <span class="n">n</span>
+<span class="mf">...</span> <span class="k">from</span> <span class="n">locations</span> <span class="k">as</span> <span class="n">l</span>
+<span class="mf">...</span> <span class="k">where</span> <span class="n">l</span><span class="mf">.</span><span class="k">name</span> <span class="o">=</span> <span class="s1">&#39;North West Ripple&#39;</span><span class="p">;</span>
+<span class="go">+-------------------+</span>
+<span class="go">| n                 |</span>
+<span class="go">+-------------------+</span>
+<span class="go">| North West Ripple |</span>
+<span class="go">+-------------------+</span>
+<span class="go">SELECT 1 row in set (... sec)</span>
+</pre></div>
+</div>
+<div class="section" id="distinct-clause">
+<h3>Distinct Clause<a class="headerlink" href="#distinct-clause" title="Permalink to this headline">¶</a></h3>
+<p>If DISTINCT is specified, one unique row is kept. All other
+duplicate rows are removed from the result set:</p>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">select</span> <span class="k">distinct</span> <span class="nb">date</span> <span class="k">from</span> <span class="n">locations</span> <span class="k">order</span> <span class="k">by</span> <span class="nb">date</span><span class="p">;</span>
+<span class="go">+---------------+</span>
+<span class="go">| date          |</span>
+<span class="go">+---------------+</span>
+<span class="go">| 308534400000  |</span>
+<span class="go">| 1367366400000 |</span>
+<span class="go">| 1373932800000 |</span>
+<span class="go">+---------------+</span>
+<span class="go">SELECT 3 rows in set (... sec)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="where-clause">
+<h3>Where Clause<a class="headerlink" href="#where-clause" title="Permalink to this headline">¶</a></h3>
+<p>A simple where clause example using an equality operator:</p>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">select</span> <span class="n">description</span> <span class="k">from</span> <span class="n">locations</span> <span class="k">where</span> <span class="n">id</span> <span class="o">=</span> <span class="s1">&#39;1&#39;</span><span class="p">;</span>
+<span class="go">+-----------------------------------------...-------------------------------------------+</span>
+<span class="go">| description                                                                           |</span>
+<span class="go">+-----------------------------------------...-------------------------------------------+</span>
+<span class="go">| Relative to life on NowWhat, living on a...er by a factor of about seventeen million. |</span>
+<span class="go">+-----------------------------------------...-------------------------------------------+</span>
+<span class="go">SELECT 1 row in set (... sec)</span>
+</pre></div>
+</div>
+<p>Usual comparison operators to be used in filters are available for
+all simple data types:</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="79%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Operator</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>&lt;</td>
+<td>less than</td>
+</tr>
+<tr class="row-odd"><td>&gt;</td>
+<td>greater than</td>
+</tr>
+<tr class="row-even"><td>&lt;=</td>
+<td>less than or equal to</td>
+</tr>
+<tr class="row-odd"><td>&gt;=</td>
+<td>greater than or equal to</td>
+</tr>
+<tr class="row-even"><td>=</td>
+<td>equal</td>
+</tr>
+<tr class="row-odd"><td>&lt;&gt;</td>
+<td>not equal</td>
+</tr>
+<tr class="row-even"><td>!=</td>
+<td>not equal - same as &lt;&gt;</td>
+</tr>
+<tr class="row-odd"><td>is not null</td>
+<td>field is not null and not missing</td>
+</tr>
+<tr class="row-even"><td>is null</td>
+<td>field is null or missing</td>
+</tr>
+<tr class="row-odd"><td>like</td>
+<td>matches a part of the given value (see <a class="reference internal" href="#sql-dml-like"><em>Like</em></a>)</td>
+</tr>
+<tr class="row-even"><td>&lt;operator&gt; ANY</td>
+<td>applies the <tt class="docutils literal"><span class="pre">&lt;operator&gt;</span></tt> on an array and returns <tt class="docutils literal"><span class="pre">true</span></tt>
+if any comparison matches; <tt class="docutils literal"><span class="pre">false</span></tt> otherwise. The result
+of ANY is <tt class="docutils literal"><span class="pre">NULL</span></tt> if either the left-hand side or the
+right-hand side is null. The result is also null, if no
+<tt class="docutils literal"><span class="pre">true</span></tt> comparison is obtained and any element of the
+array is null. All operators are supported except &#8216;is not
+null&#8217; and &#8216;is null&#8217;. Comparing objects, or arrays
+of type object is not supported (see
+<a class="reference internal" href="#sql-dml-any-array"><em>ANY (array)</em></a>).</td>
+</tr>
+<tr class="row-odd"><td>&lt;operator&gt; SOME</td>
+<td>synonym for <tt class="docutils literal"><span class="pre">&lt;operator&gt;</span> <span class="pre">ANY</span></tt></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The field &#8216;name&#8217; used for the request above is defined as
+&#8216;not_analyzed&#8217; in the schema. For an &#8216;analyzed&#8217; field the result may
+differ depending on the used Analyzer/Tokenizer.</p>
+</div>
+<p>For strings a lexicographical comparison is performed based on the
+Lucene TermRangeQuery:</p>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">select</span> <span class="k">name</span> <span class="k">from</span> <span class="n">locations</span> <span class="k">where</span> <span class="k">name</span> <span class="o">&gt;</span> <span class="s1">&#39;Argabuthon&#39;</span> <span class="k">order</span> <span class="k">by</span> <span class="k">name</span><span class="p">;</span>
+<span class="go">+------------------------------------+</span>
+<span class="go">| name                               |</span>
+<span class="go">+------------------------------------+</span>
+<span class="go">| Arkintoofle Minor                  |</span>
+<span class="go">| Bartledan                          |</span>
+<span class="go">| Galactic Sector QQ7 Active J Gamma |</span>
+<span class="go">| North West Ripple                  |</span>
+<span class="go">| Outer Eastern Rim                  |</span>
+<span class="go">+------------------------------------+</span>
+<span class="go">SELECT 5 rows in set (... sec)</span>
+</pre></div>
+</div>
+<p>For details please refer to the <a class="reference external" href="http://lucene.apache.org/core/4_0_0/core/org/apache/lucene/search/Query.html">Apache Lucene</a> site.</p>
+<p>Number and date field comparison behave as expected from standard SQL.
+The following example uses one of the supported ISO date formats:</p>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">select</span> <span class="nb">date</span><span class="p">,</span> <span class="k">position</span> <span class="k">from</span> <span class="n">locations</span> <span class="k">where</span> <span class="nb">date</span> <span class="o">&lt;=</span> <span class="s1">&#39;1979-10-12&#39;</span> <span class="k">and</span>
+<span class="mf">...</span> <span class="k">position</span> <span class="o">&lt;</span> <span class="mf">3</span> <span class="k">order</span> <span class="k">by</span> <span class="k">position</span><span class="p">;</span>
+<span class="go">+--------------+----------+</span>
+<span class="go">| date         | position |</span>
+<span class="go">+--------------+----------+</span>
+<span class="go">| 308534400000 | 1        |</span>
+<span class="go">| 308534400000 | 2        |</span>
+<span class="go">+--------------+----------+</span>
+<span class="go">SELECT 2 rows in set (... sec)</span>
+</pre></div>
+</div>
+<p>For a detailed explanation of the supported ISO date formats please refer to the <a class="reference external" href="http://joda-time.sourceforge.net/api-release/org/joda/time/format/ISODateTimeFormat.html#dateOptionalTimeParser%28%29">joda date_optional_time</a> site.</p>
+<p>For custom date types, or defined date formats in the object mapping
+the corresponding format should be used for a comparison. Otherwise
+the operation may fail.</p>
+</div>
+<div class="section" id="like">
+<span id="sql-dml-like"></span><h3>Like<a class="headerlink" href="#like" title="Permalink to this headline">¶</a></h3>
+<p><cite>Crate</cite> supports the <cite>LIKE</cite> operator. This operator can be used to query for
+rows where only part of a columns value should match something. For example to
+get all locations where the name starts with &#8216;Ar&#8217; the following query can be
+used:</p>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">select</span> <span class="k">name</span> <span class="k">from</span> <span class="n">locations</span> <span class="k">where</span> <span class="k">name</span> <span class="k">like</span> <span class="s1">&#39;Ar%&#39;</span> <span class="k">order</span> <span class="k">by</span> <span class="k">name</span> <span class="k">asc</span><span class="p">;</span>
+<span class="go">+-------------------+</span>
+<span class="go">| name              |</span>
+<span class="go">+-------------------+</span>
+<span class="go">| Argabuthon        |</span>
+<span class="go">| Arkintoofle Minor |</span>
+<span class="go">+-------------------+</span>
+<span class="go">SELECT 2 rows in set (... sec)</span>
+</pre></div>
+</div>
+<p>The following wildcard operators are available:</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="5%" />
+<col width="95%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>%</td>
+<td>A substitute for zero or more characters</td>
+</tr>
+<tr class="row-even"><td>_</td>
+<td>A substitute for a single character</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>The wildcard operators may be used at any point in the string literal. For
+example a more complicated like clause could look like this:</p>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">select</span> <span class="k">name</span> <span class="k">from</span> <span class="n">locations</span> <span class="k">where</span> <span class="k">name</span> <span class="k">like</span> <span class="s1">&#39;_r%a%&#39;</span> <span class="k">order</span> <span class="k">by</span> <span class="k">name</span> <span class="k">asc</span><span class="p">;</span>
+<span class="go">+------------+</span>
+<span class="go">| name       |</span>
+<span class="go">+------------+</span>
+<span class="go">| Argabuthon |</span>
+<span class="go">+------------+</span>
+<span class="go">SELECT 1 row in set (... sec)</span>
+</pre></div>
+</div>
+<p>In order so search for the wildcard characters themselves it is possible to
+escape them using a backslash:</p>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">select</span> <span class="n">description</span> <span class="k">from</span> <span class="n">locations</span> <span class="k">where</span> <span class="n">description</span> <span class="k">like</span> <span class="s1">&#39;%\%&#39;</span> <span class="k">order</span> <span class="k">by</span> <span class="n">description</span> <span class="k">asc</span><span class="p">;</span>
+<span class="go">+-------------------------+</span>
+<span class="go">| description             |</span>
+<span class="go">+-------------------------+</span>
+<span class="go">| The end of the Galaxy.% |</span>
+<span class="go">+-------------------------+</span>
+<span class="go">SELECT 1 row in set (... sec)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Queries with a like clause can be quite slow. Especially if the like clause
+starts with a wildcard character. Because in that case CRATE has to iterate
+over all rows and can&#8217;t utilize the index. For better performance consider
+using a fulltext index.</p>
+</div>
+</div>
+<div class="section" id="any-array">
+<span id="sql-dml-any-array"></span><h3>ANY (array)<a class="headerlink" href="#any-array" title="Permalink to this headline">¶</a></h3>
+<p>The ANY (or SOME) operator allows to search for elements within arrays. This allows to
+query for rows where an element of an array is, for example, equal to or
+greater than some <tt class="docutils literal"><span class="pre">expression</span></tt>.</p>
+<p>The following example returns any row where the array <tt class="docutils literal"><span class="pre">race['interests']</span></tt>
+contains an element &#8216;netball&#8217;:</p>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">select</span> <span class="n">race</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="n">race</span><span class="p">[</span><span class="s1">&#39;interests&#39;</span><span class="p">]</span> <span class="k">from</span> <span class="n">locations</span>
+<span class="mf">...</span> <span class="k">where</span> <span class="s1">&#39;netball&#39;</span> <span class="o">=</span> <span class="k">ANY</span><span class="p">(</span><span class="n">race</span><span class="p">[</span><span class="s1">&#39;interests&#39;</span><span class="p">]);</span>
+<span class="go">+----------------+-----------------------------------------+</span>
+<span class="go">| race[&#39;name&#39;]   | race[&#39;interests&#39;]                       |</span>
+<span class="go">+----------------+-----------------------------------------+</span>
+<span class="go">| Bartledannians | [&quot;netball&quot;, &quot;books with 100.000 words&quot;] |</span>
+<span class="go">+----------------+-----------------------------------------+</span>
+<span class="go">SELECT 1 row in set (... sec)</span>
+
+<span class="go">cr&gt; select race[&#39;name&#39;], race[&#39;interests&#39;] from locations</span>
+<span class="go">... where &#39;%books%&#39; LIKE ANY(race[&#39;interests&#39;]);</span>
+<span class="go">+----------------+-----------------------------------------+</span>
+<span class="go">| race[&#39;name&#39;]   | race[&#39;interests&#39;]                       |</span>
+<span class="go">+----------------+-----------------------------------------+</span>
+<span class="go">| Bartledannians | [&quot;netball&quot;, &quot;books with 100.000 words&quot;] |</span>
+<span class="go">+----------------+-----------------------------------------+</span>
+<span class="go">SELECT 1 row in set (... sec)</span>
+</pre></div>
+</div>
+<p>Syntax of the ANY Operator:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="n">expression</span> <span class="k">operator</span> <span class="k">ANY</span> <span class="o">|</span> <span class="k">SOME</span> <span class="p">(</span><span class="nb">array</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The ANY operator allows to apply an <tt class="docutils literal"><span class="pre">operator</span></tt> on the elements  of an
+<tt class="docutils literal"><span class="pre">array</span></tt>. The <tt class="docutils literal"><span class="pre">expression</span></tt> is evaluated and compared to each element  of
+the array using the <tt class="docutils literal"><span class="pre">operator</span></tt>. The comparison must yield a boolean
+result.</p>
+<ul class="simple">
+<li>The result of ANY is <tt class="docutils literal"><span class="pre">true</span></tt> if any comparison returns <tt class="docutils literal"><span class="pre">true</span></tt>.</li>
+<li>The result of ANY is <tt class="docutils literal"><span class="pre">false</span></tt> if no comparison returns <tt class="docutils literal"><span class="pre">true</span></tt>, or an
+array contains no elements.</li>
+<li>The result of ANY is <tt class="docutils literal"><span class="pre">NULL</span></tt> if either the expression or the array is
+null. The result is also null, if no <tt class="docutils literal"><span class="pre">true</span></tt> comparison is obtained and
+any element of the array is null.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>The following is not supported by the ANY operator:</p>
+<ul class="last simple">
+<li>&#8216;is null&#8217; and &#8216;is not null&#8217; as <tt class="docutils literal"><span class="pre">operator</span></tt>.</li>
+<li>Arrays of type object.</li>
+<li>Objects as <tt class="docutils literal"><span class="pre">expressions</span></tt>.</li>
+</ul>
+</div>
+<div class="section" id="negating-any">
+<h4>Negating ANY<a class="headerlink" href="#negating-any" title="Permalink to this headline">¶</a></h4>
+<p>One important thing to notice when using ANY is that negating the ANY operator
+does not behave as negating normal comparison operators.</p>
+<p>The following query can be translated to
+<em>get all rows where race[&#8216;interests&#8217;] has at least one element that equals &#8216;netball&#8217;</em>:</p>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">select</span> <span class="n">race</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="n">race</span><span class="p">[</span><span class="s1">&#39;interests&#39;</span><span class="p">]</span> <span class="k">from</span> <span class="n">locations</span>
+<span class="mf">...</span> <span class="k">where</span> <span class="s1">&#39;netball&#39;</span> <span class="o">=</span> <span class="k">ANY</span><span class="p">(</span><span class="n">race</span><span class="p">[</span><span class="s1">&#39;interests&#39;</span><span class="p">]);</span>
+<span class="go">+----------------+-----------------------------------------+</span>
+<span class="go">| race[&#39;name&#39;]   | race[&#39;interests&#39;]                       |</span>
+<span class="go">+----------------+-----------------------------------------+</span>
+<span class="go">| Bartledannians | [&quot;netball&quot;, &quot;books with 100.000 words&quot;] |</span>
+<span class="go">+----------------+-----------------------------------------+</span>
+<span class="go">SELECT 1 row in set (... sec)</span>
+</pre></div>
+</div>
+<p>The following query using the negated operator <tt class="docutils literal"><span class="pre">!=</span></tt> can be translated to
+<em>get all rows where race[&#8216;interests&#8217;] has at least one element that does not equal &#8216;netball&#8217;</em>.
+As you see, the result is the same in this case:</p>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">select</span> <span class="n">race</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="n">race</span><span class="p">[</span><span class="s1">&#39;interests&#39;</span><span class="p">]</span> <span class="k">from</span> <span class="n">locations</span>
+<span class="mf">...</span> <span class="k">where</span> <span class="s1">&#39;netball&#39;</span> <span class="o">!=</span> <span class="k">ANY</span><span class="p">(</span><span class="n">race</span><span class="p">[</span><span class="s1">&#39;interests&#39;</span><span class="p">]);</span>
+<span class="go">+----------------+-----------------------------------------+</span>
+<span class="go">| race[&#39;name&#39;]   | race[&#39;interests&#39;]                       |</span>
+<span class="go">+----------------+-----------------------------------------+</span>
+<span class="go">| Bartledannians | [&quot;netball&quot;, &quot;books with 100.000 words&quot;] |</span>
+<span class="go">+----------------+-----------------------------------------+</span>
+<span class="go">SELECT 1 row in set (... sec)</span>
+</pre></div>
+</div>
+<p>Negating the <tt class="docutils literal"><span class="pre">=</span></tt> query from above is totally different. It can be translated to
+<em>get all rows where race[&#8216;interests&#8217;] has no value that equals &#8216;netball&#8217;</em>:</p>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">select</span> <span class="n">race</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="n">race</span><span class="p">[</span><span class="s1">&#39;interests&#39;</span><span class="p">]</span> <span class="k">from</span> <span class="n">locations</span>
+<span class="mf">...</span> <span class="k">where</span> <span class="k">not</span> <span class="s1">&#39;netball&#39;</span> <span class="o">=</span> <span class="k">ANY</span><span class="p">(</span><span class="n">race</span><span class="p">[</span><span class="s1">&#39;interests&#39;</span><span class="p">])</span> <span class="k">order</span> <span class="k">by</span> <span class="n">race</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">];</span>
+<span class="go">+--------------+-------------------+</span>
+<span class="go">| race[&#39;name&#39;] | race[&#39;interests&#39;] |</span>
+<span class="go">+--------------+-------------------+</span>
+<span class="go">| NULL         | NULL              |</span>
+<span class="go">...</span>
+<span class="go">+--------------+-------------------+</span>
+<span class="go">SELECT 12 rows in set (... sec)</span>
+</pre></div>
+</div>
+<p>The same behaviour (though different comparison operations involved)
+holds true for operators</p>
+<blockquote>
+<div><ul class="simple">
+<li><tt class="docutils literal"><span class="pre">LIKE</span></tt> and <tt class="docutils literal"><span class="pre">NOT</span> <span class="pre">LIKE</span></tt></li>
+<li>all other comparison operators (excluding <tt class="docutils literal"><span class="pre">IS</span> <span class="pre">NULL</span></tt> and <tt class="docutils literal"><span class="pre">IS</span> <span class="pre">NOT</span> <span class="pre">NULL</span></tt>)</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="limits">
+<h3>Limits<a class="headerlink" href="#limits" title="Permalink to this headline">¶</a></h3>
+<p>As unlimited SELECT queries could break your cluster if the matching rows exceed your node&#8217;s RAM,
+SELECT statements are limited by default to <strong>10000</strong> rows.
+You can expand this limit by using an explicit LIMIT-clause.
+But you are encouraged to make use of a windowing using LIMIT and OFFSET to iterate through all the results
+of a potentially large resultset instead of expanding the default limit.</p>
+</div>
+<div class="section" id="inner-nested-objects">
+<span id="sql-dml-objects"></span><h3>Inner/Nested Objects<a class="headerlink" href="#inner-nested-objects" title="Permalink to this headline">¶</a></h3>
+<p><tt class="docutils literal"><span class="pre">Crate</span></tt> supports an <tt class="docutils literal"><span class="pre">object</span></tt> data type, used for simple storing a whole object into a
+column and it&#8217;s even possible to select and query for properties of such objects.</p>
+<p>Select a property of an inner object:</p>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">select</span> <span class="k">name</span><span class="p">,</span> <span class="n">race</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="k">from</span> <span class="n">locations</span> <span class="k">where</span> <span class="k">name</span> <span class="o">=</span> <span class="s1">&#39;Bartledan&#39;</span><span class="p">;</span>
+<span class="go">+-----------+----------------+</span>
+<span class="go">| name      | race[&#39;name&#39;]   |</span>
+<span class="go">+-----------+----------------+</span>
+<span class="go">| Bartledan | Bartledannians |</span>
+<span class="go">+-----------+----------------+</span>
+<span class="go">SELECT 1 row in set (... sec)</span>
+</pre></div>
+</div>
+<p>Query for a property of an inner object:</p>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">select</span> <span class="k">name</span><span class="p">,</span> <span class="n">race</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="k">from</span> <span class="n">locations</span> <span class="k">where</span> <span class="n">race</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Bartledannians&#39;</span><span class="p">;</span>
+<span class="go">+-----------+----------------+</span>
+<span class="go">| name      | race[&#39;name&#39;]   |</span>
+<span class="go">+-----------+----------------+</span>
+<span class="go">| Bartledan | Bartledannians |</span>
+<span class="go">+-----------+----------------+</span>
+<span class="go">SELECT 1 row in set (... sec)</span>
+</pre></div>
+</div>
+<p>Inserting objects:</p>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">insert</span> <span class="k">into</span> <span class="n">locations</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="k">name</span><span class="p">,</span> <span class="k">position</span><span class="p">,</span> <span class="n">kind</span><span class="p">,</span> <span class="n">race</span><span class="p">)</span>
+<span class="mf">...</span> <span class="k">values</span> <span class="p">(</span><span class="s1">&#39;DO&#39;</span><span class="p">,</span> <span class="s1">&#39;Dornbirn&#39;</span><span class="p">,</span> <span class="mf">14</span><span class="p">,</span> <span class="s1">&#39;City&#39;</span><span class="p">,</span> <span class="p">{</span><span class="k">name</span><span class="o">=</span><span class="s1">&#39;Vorarlberger&#39;</span><span class="p">,</span>
+<span class="mf">...</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Very nice people with a strange accent&#39;</span><span class="p">,</span> <span class="n">interests</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mountains&#39;</span><span class="p">,</span> <span class="s1">&#39;cheese&#39;</span><span class="p">,</span> <span class="s1">&#39;enzian&#39;</span><span class="p">]});</span>
+<span class="go">INSERT OK, 1 row affected (... sec)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="object-arrays">
+<span id="sql-dml-object-arrays"></span><h3>Object Arrays<a class="headerlink" href="#object-arrays" title="Permalink to this headline">¶</a></h3>
+<p>Arrays in crate can only be queried for containment using the <a class="reference internal" href="#sql-dml-any-array"><em>ANY (array)</em></a>
+operator. One exception are object arrays. As you can access fields of <a class="reference internal" href="#sql-dml-objects"><em>Inner/Nested Objects</em></a>
+using subscript expressions, you can access fields of object arrays.
+As an object array is no object, you won&#8217;t get the value for a single field, but
+an array of all the values of that field for all objects in that object array.</p>
+<p>Example:</p>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">select</span> <span class="k">name</span><span class="p">,</span> <span class="n">informations</span><span class="p">,</span> <span class="n">informations</span><span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">]</span> <span class="k">from</span> <span class="n">locations</span>
+<span class="mf">...</span> <span class="k">where</span> <span class="n">informations</span><span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">]</span> <span class="k">is</span> <span class="k">not</span> <span class="k">null</span>
+<span class="mf">...</span> <span class="k">order</span> <span class="k">by</span> <span class="k">name</span><span class="p">;</span>
+<span class="go">+-------------------+---------------------------------------------------------------------------------------+----------------------------+</span>
+<span class="go">| name              | informations                                                                          | informations[&#39;population&#39;] |</span>
+<span class="go">+-------------------+---------------------------------------------------------------------------------------+----------------------------+</span>
+<span class="go">| North West Ripple | [{&quot;evolution_level&quot;: 4, &quot;population&quot;: 12}, {&quot;evolution_level&quot;: 42, &quot;population&quot;: 42}] | [12, 42]                   |</span>
+<span class="go">| Outer Eastern Rim | [{&quot;evolution_level&quot;: 2, &quot;population&quot;: 5673745846}]                                    | [5673745846]               |</span>
+<span class="go">+-------------------+---------------------------------------------------------------------------------------+----------------------------+</span>
+<span class="go">SELECT 2 rows in set (... sec)</span>
+
+<span class="go">cr&gt; insert into locations (id, name, position, kind, informations)</span>
+<span class="go">... values (&#39;B&#39;, &#39;Berlin&#39;, 15, &#39;City&#39;, [{evolution_level=6, population=3600001}, {evolution_level=42, population=1}]);</span>
+<span class="go">INSERT OK, 1 row affected (... sec)</span>
+
+<span class="go">cr&gt; refresh table locations;</span>
+<span class="go">REFRESH OK (... sec)</span>
+
+<span class="go">cr&gt; select name from locations where 4 &lt; ANY (informations[&#39;evolution_level&#39;]);</span>
+<span class="go">+-------------------+</span>
+<span class="go">| name              |</span>
+<span class="go">+-------------------+</span>
+<span class="go">| Berlin            |</span>
+<span class="go">| North West Ripple |</span>
+<span class="go">+-------------------+</span>
+<span class="go">SELECT 2 rows in set (... sec)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-aggregation">
+<span id="sql-dml-aggregation"></span><h3>Data Aggregation<a class="headerlink" href="#data-aggregation" title="Permalink to this headline">¶</a></h3>
+<p>Crate supports aggregations by using the aggregation functions listed below on <tt class="docutils literal"><span class="pre">SELECT</span></tt> statements.</p>
+<p>Aggregation works on all the rows that match a query or on
+all matching rows in every distinct <em>group</em> of a <tt class="docutils literal"><span class="pre">GROUP</span> <span class="pre">BY</span></tt> statement.
+Aggregating <tt class="docutils literal"><span class="pre">SELECT</span></tt> statements without <tt class="docutils literal"><span class="pre">GROUP</span> <span class="pre">BY</span></tt> will
+always return one row, as they do an aggregation operation on the matching rows as one group.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="aggregation.html#aggregation"><em>Aggregation</em></a></p>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="18%" />
+<col width="41%" />
+<col width="28%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Arguments</th>
+<th class="head">Description</th>
+<th class="head">Return Type</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>COUNT(*)</td>
+<td>Star as
+Parameter or
+as Constant
+or the primary
+key column</td>
+<td>Counts the number of rows
+that match the query.</td>
+<td>long</td>
+</tr>
+<tr class="row-odd"><td>MIN</td>
+<td>column name of
+a numeric,
+timestamp
+or string
+column</td>
+<td>returns the smallest of the
+values in the argument column
+in case of strings this
+means the lexicographically
+smallest. NULL-values are ignored</td>
+<td>the input
+column type or NULL
+if all values in that
+matching rows in that
+column are NULL</td>
+</tr>
+<tr class="row-even"><td>MAX</td>
+<td>column name of
+a numeric,
+timestamp
+or string
+column</td>
+<td>returns the biggest of the
+values in the argument column
+in case of strings this
+means the lexicographically
+biggest. NULL-values are ignored</td>
+<td>the input
+column type or NULL
+if all values of all
+matching rows in that
+column are NULL</td>
+</tr>
+<tr class="row-odd"><td>SUM</td>
+<td>column name of
+a numeric or
+timestamp
+column</td>
+<td>returns the sum of the values in
+the argument column.
+NULL-values are ignored.</td>
+<td>double or NULL
+if all values of all
+matching rows in that
+column are NULL</td>
+</tr>
+<tr class="row-even"><td>AVG</td>
+<td>column name of
+a numeric or
+timestamp
+column</td>
+<td>returns the arithmetic mean of
+the values in the argument
+column.
+NULL-values are ignored.</td>
+<td>double or NULL
+if all values of all
+matching rows in that
+column are NULL</td>
+</tr>
+<tr class="row-odd"><td>ARBITRARY</td>
+<td>column name of
+a primitive
+typed
+column
+(all but
+object)</td>
+<td>returns an undefined value of
+all the values in the argument
+column. Can be NULL.</td>
+<td>the input
+column type or NULL
+if some value of the
+matching rows in that
+column is NULL</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Aggregations can only be applied to columns with a plain index, which is the
+default for all columns.
+For more information, please refer to <a class="reference internal" href="ddl.html#sql-ddl-index-plain"><em>Plain index (Default)</em></a>.</p>
+</div>
+<p>Some Examples:</p>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">select</span> <span class="n">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">from</span> <span class="n">locations</span><span class="p">;</span>
+<span class="go">+----------+</span>
+<span class="go">| count(*) |</span>
+<span class="go">+----------+</span>
+<span class="go">| 15       |</span>
+<span class="go">+----------+</span>
+<span class="go">SELECT 1 row in set (... sec)</span>
+</pre></div>
+</div>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">select</span> <span class="n">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">from</span> <span class="n">locations</span> <span class="k">where</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;Planet&#39;</span><span class="p">;</span>
+<span class="go">+----------+</span>
+<span class="go">| count(*) |</span>
+<span class="go">+----------+</span>
+<span class="go">| 5        |</span>
+<span class="go">+----------+</span>
+<span class="go">SELECT 1 row in set (... sec)</span>
+</pre></div>
+</div>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">select</span> <span class="n">count</span><span class="p">(</span><span class="k">name</span><span class="p">),</span> <span class="n">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">from</span> <span class="n">locations</span><span class="p">;</span>
+<span class="go">+-------------+----------+</span>
+<span class="go">| count(name) | count(*) |</span>
+<span class="go">+-------------+----------+</span>
+<span class="go">| 14          | 15       |</span>
+<span class="go">+-------------+----------+</span>
+<span class="go">SELECT 1 row in set (... sec)</span>
+</pre></div>
+</div>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">select</span> <span class="n">max</span><span class="p">(</span><span class="k">name</span><span class="p">)</span> <span class="k">from</span> <span class="n">locations</span><span class="p">;</span>
+<span class="go">+-------------------+</span>
+<span class="go">| max(name)         |</span>
+<span class="go">+-------------------+</span>
+<span class="go">| Outer Eastern Rim |</span>
+<span class="go">+-------------------+</span>
+<span class="go">SELECT 1 row in set (... sec)</span>
+</pre></div>
+</div>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">select</span> <span class="n">min</span><span class="p">(</span><span class="nb">date</span><span class="p">)</span> <span class="k">from</span> <span class="n">locations</span><span class="p">;</span>
+<span class="go">+--------------+</span>
+<span class="go">| min(date)    |</span>
+<span class="go">+--------------+</span>
+<span class="go">| 308534400000 |</span>
+<span class="go">+--------------+</span>
+<span class="go">SELECT 1 row in set (... sec)</span>
+</pre></div>
+</div>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">select</span> <span class="n">count</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="n">kind</span> <span class="k">from</span> <span class="n">locations</span> <span class="k">group</span> <span class="k">by</span> <span class="n">kind</span> <span class="k">order</span> <span class="k">by</span> <span class="n">kind</span> <span class="k">asc</span><span class="p">;</span>
+<span class="go">+----------+-------------+</span>
+<span class="go">| count(*) | kind        |</span>
+<span class="go">+----------+-------------+</span>
+<span class="go">| 2        | City        |</span>
+<span class="go">| 4        | Galaxy      |</span>
+<span class="go">| 5        | Planet      |</span>
+<span class="go">| 4        | Star System |</span>
+<span class="go">+----------+-------------+</span>
+<span class="go">SELECT 4 rows in set (... sec)</span>
+</pre></div>
+</div>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">select</span> <span class="n">max</span><span class="p">(</span><span class="k">position</span><span class="p">),</span> <span class="n">kind</span> <span class="k">from</span> <span class="n">locations</span> <span class="k">group</span> <span class="k">by</span> <span class="n">kind</span> <span class="k">order</span> <span class="k">by</span> <span class="n">max</span><span class="p">(</span><span class="k">position</span><span class="p">)</span> <span class="k">desc</span><span class="p">;</span>
+<span class="go">+---------------+-------------+</span>
+<span class="go">| max(position) | kind        |</span>
+<span class="go">+---------------+-------------+</span>
+<span class="go">| 15            | City        |</span>
+<span class="go">| 6             | Galaxy      |</span>
+<span class="go">| 5             | Planet      |</span>
+<span class="go">| 4             | Star System |</span>
+<span class="go">+---------------+-------------+</span>
+<span class="go">SELECT 4 rows in set (... sec)</span>
+</pre></div>
+</div>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">select</span> <span class="n">min</span><span class="p">(</span><span class="k">name</span><span class="p">),</span> <span class="n">kind</span> <span class="k">from</span> <span class="n">locations</span> <span class="k">group</span> <span class="k">by</span> <span class="n">kind</span> <span class="k">order</span> <span class="k">by</span> <span class="n">min</span><span class="p">(</span><span class="k">name</span><span class="p">)</span> <span class="k">asc</span><span class="p">;</span>
+<span class="go">+------------------------------------+-------------+</span>
+<span class="go">| min(name)                          | kind        |</span>
+<span class="go">+------------------------------------+-------------+</span>
+<span class="go">|                                    | Planet      |</span>
+<span class="go">| Aldebaran                          | Star System |</span>
+<span class="go">| Berlin                             | City        |</span>
+<span class="go">| Galactic Sector QQ7 Active J Gamma | Galaxy      |</span>
+<span class="go">+------------------------------------+-------------+</span>
+<span class="go">SELECT 4 rows in set (... sec)</span>
+</pre></div>
+</div>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">select</span> <span class="n">count</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="n">min</span><span class="p">(</span><span class="k">name</span><span class="p">),</span> <span class="n">kind</span> <span class="k">from</span> <span class="n">locations</span> <span class="k">group</span> <span class="k">by</span> <span class="n">kind</span> <span class="k">order</span> <span class="k">by</span> <span class="n">kind</span><span class="p">;</span>
+<span class="go">+----------+------------------------------------+-------------+</span>
+<span class="go">| count(*) | min(name)                          | kind        |</span>
+<span class="go">+----------+------------------------------------+-------------+</span>
+<span class="go">| 2        | Berlin                             | City        |</span>
+<span class="go">| 4        | Galactic Sector QQ7 Active J Gamma | Galaxy      |</span>
+<span class="go">| 5        |                                    | Planet      |</span>
+<span class="go">| 4        | Aldebaran                          | Star System |</span>
+<span class="go">+----------+------------------------------------+-------------+</span>
+<span class="go">SELECT 4 rows in set (... sec)</span>
+</pre></div>
+</div>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">select</span> <span class="n">sum</span><span class="p">(</span><span class="k">position</span><span class="p">)</span> <span class="k">as</span> <span class="n">sum_positions</span><span class="p">,</span> <span class="n">kind</span> <span class="k">from</span> <span class="n">locations</span> <span class="k">group</span> <span class="k">by</span> <span class="n">kind</span> <span class="k">order</span> <span class="k">by</span> <span class="n">sum_positions</span><span class="p">;</span>
+<span class="go">+---------------+-------------+</span>
+<span class="go">| sum_positions | kind        |</span>
+<span class="go">+---------------+-------------+</span>
+<span class="go">| 10.0          | Star System |</span>
+<span class="go">| 13.0          | Galaxy      |</span>
+<span class="go">| 15.0          | Planet      |</span>
+<span class="go">| 29.0          | City        |</span>
+<span class="go">+---------------+-------------+</span>
+<span class="go">SELECT 4 rows in set (... sec)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="group-by">
+<span id="sql-dml-group-by"></span><h3>Group by<a class="headerlink" href="#group-by" title="Permalink to this headline">¶</a></h3>
+<p>Crate supports the <cite>group by</cite> clause. This clause can be used to group the
+resulting rows by the value(s) of one or more columns. That means that rows
+that contain duplicate values will be merged together.</p>
+<p>This is useful if used in conjunction with aggregation functions:</p>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">select</span> <span class="n">count</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="n">kind</span> <span class="k">from</span> <span class="n">locations</span> <span class="k">group</span> <span class="k">by</span> <span class="n">kind</span> <span class="k">order</span> <span class="k">by</span> <span class="n">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">desc</span><span class="p">,</span> <span class="n">kind</span> <span class="k">asc</span><span class="p">;</span>
+<span class="go">+----------+-------------+</span>
+<span class="go">| count(*) | kind        |</span>
+<span class="go">+----------+-------------+</span>
+<span class="go">| 5        | Planet      |</span>
+<span class="go">| 4        | Galaxy      |</span>
+<span class="go">| 4        | Star System |</span>
+<span class="go">| 2        | City        |</span>
+<span class="go">+----------+-------------+</span>
+<span class="go">SELECT 4 rows in set (... sec)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">All columns that are used either as result column or in the order by clause
+have to be used within the group by clause. Otherwise the statement won&#8217;t
+execute.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Grouping on multi-value fields doesn&#8217;t work. If such a field is encountered
+during a group by operation an error is thrown.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Grouping can only be applied to columns with a plain index, which is the
+default for all columns.
+For more information, please refer to <a class="reference internal" href="ddl.html#sql-ddl-index-plain"><em>Plain index (Default)</em></a>.</p>
+</div>
+</div>
+<div class="section" id="fulltext-search">
+<h3>Fulltext search<a class="headerlink" href="#fulltext-search" title="Permalink to this headline">¶</a></h3>
+<p>In order to use fulltext searches on columns, one must create a
+<a class="reference internal" href="ddl.html#sql-ddl-index-fulltext"><em>fulltext index with an analyzer</em></a> on the related column
+upfront on table creation, see <a class="reference internal" href="ddl.html#fulltext-indices"><em>Indices and fulltext search</em></a> for details.</p>
+<p>A fulltext search is done using the <tt class="docutils literal"><span class="pre">match(columnName,</span> <span class="pre">queryTerm)</span></tt> helper function:</p>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">select</span> <span class="k">name</span> <span class="k">from</span> <span class="n">locations</span> <span class="k">where</span> <span class="k">match</span><span class="p">(</span><span class="n">name_description_ft</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">);</span>
+<span class="go">+-----------+</span>
+<span class="go">| name      |</span>
+<span class="go">+-----------+</span>
+<span class="go">| Altair    |</span>
+<span class="go">| Bartledan |</span>
+<span class="go">+-----------+</span>
+<span class="go">SELECT 2 rows in set (... sec)</span>
+</pre></div>
+</div>
+<p>In order to get the match score of the fulltext search, an internal system column
+<a class="reference internal" href="ddl.html#sql-ddl-system-column-score"><em>_score</em></a> can be selected:</p>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">select</span> <span class="k">name</span><span class="p">,</span> <span class="kp">\&quot;_score\&quot;</span> <span class="ss">from</span> <span class="ss">locations</span> <span class="ss">where</span> <span class="ss">match(name_description_ft,</span> <span class="s1">&#39;time&#39;</span><span class="ss">);</span>
+<span class="go">+-----------+------------+</span>
+<span class="go">| name      | _score     |</span>
+<span class="go">+-----------+------------+</span>
+<span class="go">| Altair    | 0.5965736  |</span>
+<span class="go">| Bartledan | 0.49279192 |</span>
+<span class="go">+-----------+------------+</span>
+<span class="go">SELECT 2 rows in set (... sec)</span>
+</pre></div>
+</div>
+<p>The results of a <tt class="docutils literal"><span class="pre">match(...)</span></tt> query are sorted by <a class="reference internal" href="ddl.html#sql-ddl-system-column-score"><em>_score</em></a>
+in a descending order by default.
+Of course it is possible to change it to use an ascending order instead:</p>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">select</span> <span class="k">name</span><span class="p">,</span> <span class="kp">\&quot;_score\&quot;</span> <span class="ss">from</span> <span class="ss">locations</span> <span class="ss">where</span> <span class="ss">match(name_description_ft,</span> <span class="s1">&#39;time&#39;</span><span class="ss">)</span>
+<span class="mf">...</span> <span class="k">order</span> <span class="k">by</span> <span class="kp">\&quot;_score\&quot;</span> <span class="ss">asc;</span>
+<span class="go">+-----------+------------+</span>
+<span class="go">| name      | _score     |</span>
+<span class="go">+-----------+------------+</span>
+<span class="go">| Bartledan | 0.49279192 |</span>
+<span class="go">| Altair    | 0.5965736  |</span>
+<span class="go">+-----------+------------+</span>
+<span class="go">SELECT 2 rows in set (... sec)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The terms used for a fulltext search are analyzed by an <tt class="docutils literal"><span class="pre">OR</span></tt> operator.</p>
+</div>
+<div class="section" id="negative-search">
+<h4>Negative search<a class="headerlink" href="#negative-search" title="Permalink to this headline">¶</a></h4>
+<p>A negative fulltext search can be done using a <tt class="docutils literal"><span class="pre">NOT</span></tt> clause:</p>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">select</span> <span class="k">name</span><span class="p">,</span> <span class="kp">\&quot;_score\&quot;</span> <span class="ss">from</span> <span class="ss">locations</span> <span class="ss">where</span> <span class="ss">not</span> <span class="ss">match(name_description_ft,</span> <span class="s1">&#39;time&#39;</span><span class="ss">);</span>
+<span class="go">+------------------------------------+--------+</span>
+<span class="go">| name                               | _score |</span>
+<span class="go">+------------------------------------+--------+</span>
+<span class="go">| Outer Eastern Rim                  | 1.0    |</span>
+<span class="go">| Aldebaran                          | 1.0    |</span>
+<span class="go">| Alpha Centauri                     | 1.0    |</span>
+<span class="go">| Allosimanius Syneca                | 1.0    |</span>
+<span class="go">| NULL                               | 1.0    |</span>
+<span class="go">| Berlin                             | 1.0    |</span>
+<span class="go">| North West Ripple                  | 1.0    |</span>
+<span class="go">| Galactic Sector QQ7 Active J Gamma | 1.0    |</span>
+<span class="go">| Algol                              | 1.0    |</span>
+<span class="go">| Argabuthon                         | 1.0    |</span>
+<span class="go">| Arkintoofle Minor                  | 1.0    |</span>
+<span class="go">|                                    | 1.0    |</span>
+<span class="go">| Dornbirn                           | 1.0    |</span>
+<span class="go">+------------------------------------+--------+</span>
+<span class="go">SELECT 13 rows in set (... sec)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="filter-by-score">
+<h4>Filter by <a class="reference internal" href="ddl.html#sql-ddl-system-column-score"><em>_score</em></a><a class="headerlink" href="#filter-by-score" title="Permalink to this headline">¶</a></h4>
+<p>It is possible to filter results by the <a class="reference internal" href="ddl.html#sql-ddl-system-column-score"><em>_score</em></a> column
+but as it&#8217;s value is a ratio related to the highest score of all result and thus never
+absolute and directly comparable across searches its use-case is very limited if any.
+It is only possible to filter by greater-than or greater-equals operator on the
+<a class="reference internal" href="ddl.html#sql-ddl-system-column-score"><em>_score</em></a> column.</p>
+<p>Anyway let&#8217;s do it here for demonstration purpose:</p>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">select</span> <span class="k">name</span><span class="p">,</span> <span class="kp">\&quot;_score\&quot;</span> <span class="ss">from</span> <span class="ss">locations</span> <span class="ss">where</span> <span class="ss">match(name_description_ft,</span> <span class="s1">&#39;time&#39;</span><span class="ss">)</span>
+<span class="mf">...</span> <span class="k">and</span> <span class="kp">\&quot;_score\&quot;</span> <span class="ss">&gt;</span> <span class="ss">0.9;</span>
+<span class="go">+--------+------------+</span>
+<span class="go">| name   | _score     |</span>
+<span class="go">+--------+------------+</span>
+<span class="go">| Altair | 0.93670994 |</span>
+<span class="go">+--------+------------+</span>
+<span class="go">SELECT 1 row in set (... sec)</span>
+</pre></div>
+</div>
+<p>As you maybe noticed, the <a class="reference internal" href="ddl.html#sql-ddl-system-column-score"><em>_score</em></a> value has changed for the
+same query text and document because it&#8217;s a ratio related to all results,
+and if we limit it by filtering on <a class="reference internal" href="ddl.html#sql-ddl-system-column-score"><em>_score</em></a>,
+we&#8217;ll have fewer or different results.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">As noted above <a class="reference internal" href="ddl.html#sql-ddl-system-column-score"><em>_score</em></a> is a ratio and not comparable
+across search so use it only for filtering if you know what you&#8217;re doing and on your own risk.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="inserting-data">
+<h2>Inserting data<a class="headerlink" href="#inserting-data" title="Permalink to this headline">¶</a></h2>
+<p>Inserting data to <tt class="docutils literal"><span class="pre">Crate</span></tt> is done by using the SQL <tt class="docutils literal"><span class="pre">INSERT</span></tt> statement.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The column list at <tt class="docutils literal"><span class="pre">Crate</span></tt> is always ordered alphabetically by column name
+and so must the inserted column values.</p>
+</div>
+<p>Inserting a row:</p>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">insert</span> <span class="k">into</span> <span class="n">locations</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="nb">date</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">kind</span><span class="p">,</span> <span class="k">name</span><span class="p">,</span> <span class="k">position</span><span class="p">)</span>
+<span class="mf">...</span> <span class="k">values</span> <span class="p">(</span><span class="s1">&#39;14&#39;</span><span class="p">,</span> <span class="s1">&#39;2013-09-12T21:43:59.000Z&#39;</span><span class="p">,</span> <span class="s1">&#39;Blagulon Kappa is the planet to which the police are native.&#39;</span><span class="p">,</span> <span class="s1">&#39;Planet&#39;</span><span class="p">,</span> <span class="s1">&#39;Blagulon Kappa&#39;</span><span class="p">,</span> <span class="mf">7</span><span class="p">);</span>
+<span class="go">INSERT OK, 1 row affected (... sec)</span>
+</pre></div>
+</div>
+<p>Inserting multiple rows at once (aka. bulk insert) can be done by defining
+multiple values for the <tt class="docutils literal"><span class="pre">INSERT</span></tt> statement:</p>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">insert</span> <span class="k">into</span> <span class="n">locations</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="nb">date</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">kind</span><span class="p">,</span> <span class="k">name</span><span class="p">,</span> <span class="k">position</span><span class="p">)</span> <span class="k">values</span>
+<span class="mf">...</span> <span class="p">(</span><span class="s1">&#39;16&#39;</span><span class="p">,</span> <span class="s1">&#39;2013-09-14T21:43:59.000Z&#39;</span><span class="p">,</span> <span class="s1">&#39;Blagulon Kappa II is the planet to which the police are native.&#39;</span><span class="p">,</span> <span class="s1">&#39;Planet&#39;</span><span class="p">,</span> <span class="s1">&#39;Blagulon Kappa II&#39;</span><span class="p">,</span> <span class="mf">19</span><span class="p">),</span>
+<span class="mf">...</span> <span class="p">(</span><span class="s1">&#39;17&#39;</span><span class="p">,</span> <span class="s1">&#39;2013-09-13T16:43:59.000Z&#39;</span><span class="p">,</span> <span class="s1">&#39;Brontitall is a planet with a warm, rich atmosphere and no mountains.&#39;</span><span class="p">,</span> <span class="s1">&#39;Planet&#39;</span><span class="p">,</span> <span class="s1">&#39;Brontitall&#39;</span><span class="p">,</span> <span class="mf">10</span><span class="p">);</span>
+<span class="go">INSERT OK, 2 rows affected (... sec)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="updating-data">
+<h2>Updating data<a class="headerlink" href="#updating-data" title="Permalink to this headline">¶</a></h2>
+<p>In order to update documents in <cite>Crate</cite> the SQL <cite>UPDATE</cite> statement can be
+used:</p>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">update</span> <span class="n">locations</span> <span class="k">set</span> <span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;Updated description&#39;</span> <span class="k">where</span> <span class="k">name</span> <span class="o">=</span> <span class="s1">&#39;Bartledan&#39;</span><span class="p">;</span>
+<span class="go">UPDATE OK, 1 row affected (... sec)</span>
+</pre></div>
+</div>
+<p>Updating nested objects is also supported:</p>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">update</span> <span class="n">locations</span> <span class="k">set</span> <span class="n">race</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Human&#39;</span> <span class="k">where</span> <span class="k">name</span> <span class="o">=</span> <span class="s1">&#39;Bartledan&#39;</span><span class="p">;</span>
+<span class="go">UPDATE OK, 1 row affected (... sec)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If the same documents are updated concurrently an VersionConflictException
+might occur. Crate contains a retry logic that tries to resolve the
+conflict automatically. But if it fails more than 3 times the error is
+returned to the user.</p>
+</div>
+</div>
+<div class="section" id="deleting-data">
+<h2>Deleting data<a class="headerlink" href="#deleting-data" title="Permalink to this headline">¶</a></h2>
+<p>Deleting rows in Crate is done using the SQL <tt class="docutils literal"><span class="pre">DELETE</span></tt> statement:</p>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">delete</span> <span class="k">from</span> <span class="n">locations</span> <span class="k">where</span> <span class="k">position</span> <span class="o">&gt;</span> <span class="mf">3</span><span class="p">;</span>
+<span class="go">DELETE OK, ... rows affected (... sec)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="refresh">
+<span id="refresh-data"></span><h2>Refresh<a class="headerlink" href="#refresh" title="Permalink to this headline">¶</a></h2>
+<p>Crate Data is <a class="reference external" href="http://en.wikipedia.org/wiki/Eventual_consistency">eventually consistent</a>. Data written with a former statement is
+not guaranteed to be fetched with the next following select statement for
+the affected rows.</p>
+<p>If required a table can be refreshed explicitly in order to ensure
+that the latest state of the table gets fetched:</p>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="n">refresh</span> <span class="k">table</span> <span class="n">locations</span><span class="p">;</span>
+<span class="go">REFRESH OK (... sec)</span>
+</pre></div>
+</div>
+<p>A table is refreshed periodically with a specified refresh interval. By
+default, the refresh interval is set to 1000 milliseconds. The refresh interval
+of a table can be changed with the table parameter <tt class="docutils literal"><span class="pre">refresh_interval</span></tt> (see
+<a class="reference internal" href="reference/create_table.html#sql-ref-refresh-interval"><em>refresh_interval</em></a>).</p>
+</div>
+<div class="section" id="importing-data">
+<span id="id1"></span><h2>Importing data<a class="headerlink" href="#importing-data" title="Permalink to this headline">¶</a></h2>
+<p>Using the <tt class="docutils literal"><span class="pre">COPY</span> <span class="pre">FROM</span></tt> SQL statement, data can be imported into Crate.
+Currently the only supported data format is JSON, one line is representing one entry.</p>
+<p>Example JSON data:</p>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nt">&quot;quote&quot;</span><span class="p">:</span> <span class="s2">&quot;Don&#39;t panic&quot;</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="nt">&quot;quote&quot;</span><span class="p">:</span> <span class="s2">&quot;Would it save you a lot of time if I just gave up and went mad now?&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Existing entries will be overwritten on import.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The <tt class="docutils literal"><span class="pre">COPY</span> <span class="pre">FROM</span></tt> statement will not convert or validate your data.
+Please make sure that it fits your schema.</p>
+</div>
+<p>In order to import data into <a class="reference internal" href="ddl.html#sql-ddl-partitioned-by"><em>Partitioned Tables</em></a> take a look at the
+<a class="reference internal" href="reference/copy_from.html#copy-from"><em>COPY FROM</em></a> reference.</p>
+<div class="section" id="import-from-file-uri">
+<h3>Import from File URI<a class="headerlink" href="#import-from-file-uri" title="Permalink to this headline">¶</a></h3>
+<p>An example import from a file URI:</p>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">copy</span> <span class="n">quotes</span> <span class="k">from</span> <span class="s1">&#39;file:///tmp/import_data/quotes.json&#39;</span><span class="p">;</span>
+<span class="go">COPY OK, 3 rows affected (... sec)</span>
+</pre></div>
+</div>
+<p>If all files inside a directory should be imported a <tt class="docutils literal"><span class="pre">*</span></tt> wildcard has to be
+used:</p>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">copy</span> <span class="n">quotes</span> <span class="k">from</span> <span class="s1">&#39;/tmp/import_data/*&#39;</span> <span class="k">with</span> <span class="p">(</span><span class="n">concurrency</span><span class="o">=</span><span class="mf">1</span><span class="p">,</span> <span class="n">bulk_size</span><span class="o">=</span><span class="mf">4</span><span class="p">);</span>
+<span class="go">COPY OK, 3 rows affected (... sec)</span>
+</pre></div>
+</div>
+<p>This wildcard can also be used to only match certain files:</p>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">copy</span> <span class="n">quotes</span> <span class="k">from</span> <span class="s1">&#39;/tmp/import_data/qu*.json&#39;</span><span class="p">;</span>
+<span class="go">COPY OK, 3 rows affected (... sec)</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="reference/copy_from.html#copy-from"><em>COPY FROM</em></a> for more information.</p>
+</div>
+</div>
+<div class="section" id="exporting-data">
+<h2>Exporting Data<a class="headerlink" href="#exporting-data" title="Permalink to this headline">¶</a></h2>
+<p>Data can be exported using the <tt class="docutils literal"><span class="pre">COPY</span> <span class="pre">TO</span></tt> statement. Data gets
+exported distributed on each node holding data of the table to be
+exported.</p>
+<p>Replicated data is not exported. So every row of an exported table is
+stored only once.</p>
+<p>Every node exports the rows of a table that are currently stored on it.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Data is written per shard, so if there is more than one shard of the
+exported table on the same node, the output file will get
+corrupted due to concurrent writes to the same file. The example
+below shows a way to prevent such cases.</p>
+</div>
+<p>This example shows how to export a given table into files named after
+the table and shard id with gzip compression:</p>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="n">refresh</span> <span class="k">table</span> <span class="n">quotes</span><span class="p">;</span>
+<span class="go">REFRESH OK...</span>
+</pre></div>
+</div>
+<div class="highlight-psql"><div class="highlight"><pre><span class="n">cr</span><span class="o">&gt;</span> <span class="k">copy</span> <span class="n">quotes</span> <span class="k">to</span> <span class="n">DIRECTORY</span> <span class="s1">&#39;/tmp/&#39;</span> <span class="k">with</span> <span class="p">(</span><span class="n">compression</span><span class="o">=</span><span class="s1">&#39;gzip&#39;</span><span class="p">);</span>
+<span class="go">COPY OK, 3 rows affected ...</span>
+</pre></div>
+</div>
+<p>For further details see <a class="reference internal" href="reference/copy_to.html#copy-to"><em>COPY TO</em></a>.</p>
+</div>
+</div>
+
+
+        </div>
+        <footer class="footer">
+          <div class="footer-container">
+            <p class="pull-right">
+              <a href="#">Back to top</a>
+
+            </p>
+            <p>
+              &copy; Copyright 2014, CRATE Technology GmbH.<br/>
+              Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
+            </p>
+          </div>
+        </footer>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+
+  _gaq.push(['_setAccount', 'UA-46278040-1']);
+  _gaq.push(['_trackPageview']);
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<script type="text/javascript">
+  $(function() {
+    $('table').attr("border","0").addClass('table');
+    $('.search').addClass('list-unstyled');
+    $('.toctree ul').addClass('nav');
+    $('.localtoc ul').addClass('nav');
+    $('body').scrollspy({
+     'target': '.toctree',
+     'offset': 51
+    });
+  });
+</script>
+  </body>
+</html>
